@@ -20,38 +20,52 @@ function addBookToLibrary(book) {
 //Add function prototype to object
 Book.prototype.describe = function () { console.log(this.info) };
 
-//Create an instance of a book
-const book = new Book('Bible', 'God', 1000, 'not read');
-
-//Create more instances of books
+//Create four instances of books
 let book1 = new Book('The Linux Command Line', 'William Shotts', 470, 'not read')
 let book2 = new Book('Python Crash Course', 'Eric Matthes', 506, 'read')
 let book3 = new Book('Think Like a Programmer', 'V. Anthon Spraul', 233, 'not read')
+let book4 = new Book('Bible', 'God', 1000, 'not read');
 
 
 //Add all 4 books to my_library
-addBookToLibrary(book)
 addBookToLibrary(book1)
 addBookToLibrary(book2)
 addBookToLibrary(book3)
-//Console log info of a book
-book.describe()
+addBookToLibrary(book4)
+
 
 //Initialize container for cards
 let container = document.querySelector(".container")
 
-//Initialize new div
-let card_div = document.createElement("div")
 
-//Add class to card_div
-card_div.classList.add("card")
 
 //Add all books from my_library to card div
 my_library.forEach(element => {
-    card_div.innerHTML += element.info;
-
+    //Initialize new div
+    let card_div = document.createElement("div")
+    //Add class to card_div
+    card_div.classList.add("card")
+    //Populate card with book.info
+    card_div.innerHTML = element.info;
+    //Add toggle button for read/not read.
+    card_div.innerHTML += '<button class="toggle">Read</button>'
+    //Append new div to container
+    container.appendChild(card_div)
 });
 
+//Function to switch read/not read
+function toggle_read(book) {
+    if (book.read == 'not read') {
+        book.read = 'read'
+        console.log(book1.info, book1.read)
 
-//Append new div to container
-container.appendChild(card_div)
+    } else if (book.read == 'read') {
+        book.read = 'not read'
+        console.log(book.info, book.read)
+
+    }
+}
+
+//Initialize first button
+let button = document.querySelector('.toggle')
+button.addEventListener('click', (event) => toggle_read(book1));
