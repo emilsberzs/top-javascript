@@ -1,0 +1,17 @@
+header {
+    display: grid;
+    background-color: grey;
+}
+
+h1 {
+    justify-self: center;
+}
+
+.container {
+    display: grid;
+    background-color: pink;
+}
+
+.card {
+    background-color: lightblue;
+}
